@@ -1,0 +1,61 @@
+<!doctype html>
+<head>
+<title>The Cloud</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+
+.header {
+  padding: 10px 16px;
+  color: #f1f1f1;
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.sticky + .content {
+  padding-top: 102px;
+}
+
+</style>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<div class="top-container">
+  <h1 style="font-size:600%; color:black;">The Cloud</h1>
+</div>
+
+<body>
+<div class="center-on-page">
+  <div class="header" id="myHeader">
+  <h1>What's The Weather Like In Your Town ?</h1>
+</div>
+
+<form class="form-inline" method="POST" action="{{ url_for('result') }}">
+   <div class="select">
+    <select name="comp_select" class="selectpicker form-control">
+    {% for o in data %}
+     <option value="{{ o.name }}">{{ o.name }}</option>
+    {% endfor %}
+    </select>
+   </div>
+    <button type="submit" class="btn">Go</button>
+</form>
+
+<script>
+window.onscroll = function() {myFunction()};
+
+var header = document.getElementById("myHeader");
+var sticky = header.offsetTop;
+
+function myFunction() {
+  if (window.pageYOffset > sticky) {
+    header.classList.add("sticky");
+  } else {
+    header.classList.remove("sticky");
+  }
+}
+</script>
+</body>
